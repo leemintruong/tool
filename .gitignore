@@ -1,0 +1,44 @@
+# Python environments and caches
+.venv/
+venv/
+__pycache__/
+*.py[cod]
+.pytest_cache/
+.coverage
+htmlcov/
+
+# Local inputs and downloaded/generated media
+input/script.txt
+input/youtube_urls.txt
+*.wav
+*.mp3
+*.m4a
+*.aac
+*.flac
+*.onnx
+voices/*.onnx.json
+*.mp4
+*.mov
+*.mkv
+*.webm
+
+# Runtime data
+output/
+projects/
+logs/
+data/download_archive.txt
+backup_before_v7/
+prompts/
+
+# User-provided stock media; keep only the tiny repository sample
+assets/stock_images/*
+!assets/stock_images/sample_01.png
+assets/stock_videos/
+assets/generated_images/
+
+# Local editor and operating-system files
+.idea/
+.vscode/
+.DS_Store
+Thumbs.db
+*.log

@@ -1,0 +1,17 @@
+video:
+  width: 1920
+  height: 1080
+  fps: 30
+  image_duration_seconds: 9
+  transition_seconds: 0.5
+  subtitle_font_size: 38
+  subtitle_margin_v: 70
+  bitrate: "3500k"
+
+audio:
+  background_music_volume: 0.08
+  narration_volume: 1.0
+
+metadata:
+  default_language: "en"
+  category: "People & Blogs"

@@ -1,0 +1,37 @@
+name: family_drama_us
+output_language: English
+audience: Older and middle-aged US readers and viewers who enjoy credible family-drama stories
+target_words_min: 2800
+target_words_max: 4200
+narrative_voice: First-person past tense, natural American storytelling voice
+tone: Restrained emotional tension, clear stakes, believable everyday detail, and a strong but earned resolution
+
+originality_rules:
+  - Use completely new character names, ages, occupations, family relationships, locations, amounts, dates, possessions, and institutions.
+  - Do not retain distinctive dialogue, sentence structure, metaphors, jokes, reveal wording, or memorable phrases from the reference.
+  - Do not preserve the same sequence of major events. Change the inciting incident, escalation path, evidence, confrontation, reversal, and ending.
+  - Do not merely translate, summarize, shorten, expand, or synonym-swap the reference.
+  - Add new motives, causal links, consequences, supporting characters, and scene-level details that are not present in the reference.
+  - The resulting story must stand on its own without access to the reference.
+
+safety_rules:
+  - Keep the story brand-suitable and PG-13.
+  - Avoid graphic injury, explicit sexual material, hate speech, instructions for wrongdoing, and celebratory cruelty.
+  - Replace explicit physical harm with non-graphic conflict, consequences, separation, legal action, or emotional confrontation where appropriate.
+  - Do not use real private-person allegations or present invented claims as news.
+
+story_structure:
+  - Open immediately with a specific emotional contradiction or family betrayal.
+  - Establish the narrator, US setting, relationship, and concrete stakes without excessive backstory.
+  - Escalate through several causally connected scenes rather than repeated arguments.
+  - Plant an early clue that later supports the reversal without making the ending obvious.
+  - Include a clear midpoint change that forces the narrator to act differently.
+  - Build to a credible confrontation or decision with visible consequences.
+  - End with a materially different resolution and a concise emotional aftereffect.
+
+output_rules:
+  - "First line: TITLE: followed by one original English title."
+  - "Then write SCRIPT: followed by the complete original narration."
+  - Do not use timestamps.
+  - Do not mention the reference video, source transcript, rewriting process, copyright, or AI.
+  - Do not include commentary before or after the requested output.

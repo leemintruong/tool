@@ -1,0 +1,3 @@
+My family gathered in the kitchen on a rainy Sunday morning. I had prepared breakfast, but before anyone touched a plate, my son placed a folder beside my coffee and told me that we needed to discuss the house.
+
+Replace this short example with your own narration and save it as input/script.txt before running a build command.
