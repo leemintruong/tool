@@ -1,11 +1,11 @@
-# YouTube Auto Factory MVP V7.1 - Windows setup (ASCII-safe)
+# YouTube Auto Factory MVP V7.2 - Windows setup (ASCII-safe)
 $ErrorActionPreference = "Stop"
 
 if ($PSScriptRoot) {
     Set-Location $PSScriptRoot
 }
 
-Write-Host "=== YouTube Auto Factory MVP V7.1 - Windows Setup ===" -ForegroundColor Cyan
+Write-Host "=== YouTube Auto Factory MVP V7.2 - Windows Setup ===" -ForegroundColor Cyan
 Write-Host "Project folder: $PSScriptRoot" -ForegroundColor DarkGray
 
 function Test-Command {
@@ -125,4 +125,5 @@ if ($LASTEXITCODE -ne 0) { throw "Environment doctor failed." }
 Write-Host "" 
 Write-Host "SETUP COMPLETED." -ForegroundColor Green
 Write-Host "Run RUN_INGEST_SAMPLE.bat to test URL-to-TXT." -ForegroundColor Cyan
+Write-Host "Run SETUP_GEMINI_FREE_WINDOWS.bat before automatic AI rewrite." -ForegroundColor Cyan
 Write-Host "Run INSTALL_PIPER_WINDOWS.bat once before building with Piper TTS." -ForegroundColor Cyan

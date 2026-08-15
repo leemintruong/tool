@@ -12,7 +12,7 @@ powershell -ExecutionPolicy Bypass -File .\SETUP_WINDOWS.ps1
 .\.venv\Scripts\python.exe .\app.py doctor
 ```
 
-`SETUP_WINDOWS.ps1` tạo `.venv`, cài `requirements.txt` và kiểm tra FFmpeg, yt-dlp, Whisper, Deno cùng Piper. `imageio-ffmpeg` cung cấp FFmpeg dự phòng nên không bắt buộc thêm FFmpeg thủ công vào `PATH`.
+`SETUP_WINDOWS.ps1` tạo `.venv`, cài `requirements.txt` và kiểm tra FFmpeg, yt-dlp, Whisper, Deno, Piper cùng trạng thái Gemini API key. `imageio-ffmpeg` cung cấp FFmpeg dự phòng nên không bắt buộc thêm FFmpeg thủ công vào `PATH`.
 
 ## Thành phần tùy chọn
 
@@ -20,9 +20,12 @@ powershell -ExecutionPolicy Bypass -File .\SETUP_WINDOWS.ps1
 INSTALL_DENO_WINDOWS.bat
 INSTALL_WHISPER_WINDOWS.bat
 INSTALL_PIPER_WINDOWS.bat
+SETUP_GEMINI_FREE_WINDOWS.bat
 ```
 
 Piper được cài trong `.venv` và voice model được tải vào `voices`. Không cần commit executable hoặc model lên Git.
+
+`SETUP_GEMINI_FREE_WINDOWS.bat` lưu `GEMINI_API_KEY` trong User Environment của Windows bằng ô nhập ẩn. Key không được ghi vào dự án. Sau khi thiết lập, đóng toàn bộ PowerShell rồi mở lại.
 
 ## Chuẩn bị input local
 

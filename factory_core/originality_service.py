@@ -4,7 +4,7 @@ import re
 from collections import Counter
 from pathlib import Path
 
-from .common import atomic_write_json, atomic_write_text
+from .common import atomic_write_json, atomic_write_text, sha256_file
 
 TOKEN_RE = re.compile(r"[A-Za-z0-9']+")
 
@@ -55,6 +55,8 @@ def validate_script(
         "script_overlap_ratio": round(ratio, 6),
         "review_level": level,
         "sample_matching_phrases": matching_phrases,
+        "source_sha256": sha256_file(source_path),
+        "script_sha256": sha256_file(script_path),
     }
 
     destination = Path(output_dir)

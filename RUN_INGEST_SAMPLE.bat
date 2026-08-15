@@ -14,4 +14,6 @@ echo.
 echo When successful, open:
 echo projects\Ce3G2LHKkNk\transcript\transcript_clean.txt
 echo projects\Ce3G2LHKkNk\prompts\rewrite_prompt.txt
+echo Or run Gemini rewrite with:
+echo .venv\Scripts\python.exe app.py rewrite --project Ce3G2LHKkNk
 pause

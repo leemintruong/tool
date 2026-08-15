@@ -3,7 +3,7 @@ setlocal
 cd /d "%~dp0"
 
 echo ================================
-echo AUTO YOUTUBE VIDEO BUILDER V7.1
+echo AUTO YOUTUBE VIDEO BUILDER V7.2
 echo ================================
 
 if not exist ".venv\Scripts\python.exe" (

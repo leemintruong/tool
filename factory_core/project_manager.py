@@ -76,7 +76,7 @@ class ProjectManager:
         if not isinstance(record, dict):
             now = utc_now_iso()
             record = {
-                "schema_version": 1,
+                "schema_version": 2,
                 "project_id": resolved_id,
                 "source_url": source_url,
                 "video_id": extract_youtube_id(source_url),
@@ -91,10 +91,21 @@ class ProjectManager:
                     "metadata": "source/metadata.json",
                     "transcript_clean": "transcript/transcript_clean.txt",
                     "rewrite_prompt": "prompts/rewrite_prompt.txt",
+                    "rewritten_script": "scripts/rewritten_script.txt",
                     "approved_script": "scripts/approved_script.txt",
+                    "approval_manifest": "qa/approval.json",
                     "final_video": "output/final_video.mp4",
                 },
             }
+            atomic_write_json(record_path, record)
+        else:
+            paths = record.setdefault("paths", {})
+            paths.setdefault("rewritten_script", "scripts/rewritten_script.txt")
+            paths.setdefault("approved_script", "scripts/approved_script.txt")
+            paths.setdefault("approval_manifest", "qa/approval.json")
+            paths.setdefault("final_video", "output/final_video.mp4")
+            if int(record.get("schema_version") or 1) < 2:
+                record["schema_version"] = 2
             atomic_write_json(record_path, record)
         return record
 
@@ -109,6 +120,14 @@ class ProjectManager:
         record = read_json(record_path, default=None)
         if not isinstance(record, dict):
             raise FileNotFoundError(f"Project not found or invalid: {project_dir}")
+        paths = record.setdefault("paths", {})
+        paths.setdefault("rewritten_script", "scripts/rewritten_script.txt")
+        paths.setdefault("approved_script", "scripts/approved_script.txt")
+        paths.setdefault("approval_manifest", "qa/approval.json")
+        paths.setdefault("final_video", "output/final_video.mp4")
+        if int(record.get("schema_version") or 1) < 2:
+            record["schema_version"] = 2
+        atomic_write_json(record_path, record)
         return project_dir, record
 
     def update(self, project_dir: str | Path, **changes) -> dict:

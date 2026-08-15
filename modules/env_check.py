@@ -97,7 +97,7 @@ def check_environment() -> dict:
         ffmpeg_info = f"NOT_FOUND | {e}"
 
     ffprobe = get_ffprobe_bin()
-    ffprobe_info = _version_with_path(ffprobe) if ffprobe else "NOT_FOUND (OK nếu dùng voice .wav; V7.1 không bắt buộc ffprobe)"
+    ffprobe_info = _version_with_path(ffprobe) if ffprobe else "NOT_FOUND (OK nếu dùng voice .wav; V7.2 không bắt buộc ffprobe)"
 
     try:
         import imageio_ffmpeg

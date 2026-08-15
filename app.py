@@ -9,6 +9,31 @@ from factory_core.cli_commands import register_commands as register_v7_commands
 from factory_core.common import find_ffmpeg_location, package_status
 
 
+def _guard_project_script_approval(script_path: str) -> None:
+    """Prevent legacy render commands from bypassing a V7 project approval."""
+    script = Path(script_path).expanduser().resolve()
+    if script.parent.name != "scripts":
+        return
+    project_dir = script.parent.parent
+    if not (project_dir / "project.json").is_file():
+        return
+
+    from factory_core.approval_service import ApprovalError, verify_approved_script
+
+    try:
+        _directory, approved, _manifest = verify_approved_script(
+            project_dir,
+            projects_root=project_dir.parent,
+        )
+    except ApprovalError as exc:
+        raise SystemExit(str(exc)) from exc
+    if script != approved.resolve():
+        raise SystemExit(
+            "Project scripts cannot be rendered before approval. "
+            f"Use the verified file: {approved}"
+        )
+
+
 def cmd_subtitle(args):
     from modules.audio_utils import get_audio_duration
     from modules.subtitle_generator import create_srt_from_script
@@ -42,6 +67,7 @@ def cmd_plan(args):
 def cmd_build(args):
     from modules.pipeline import build_video_package
 
+    _guard_project_script_approval(args.script)
     result = build_video_package(
         script_path=args.script,
         media_dir=args.media,
@@ -86,7 +112,11 @@ def cmd_doctor(_args):
     info["yt_dlp"] = package_status("yt_dlp")
     info["faster_whisper"] = package_status("faster_whisper")
     info["deno"] = shutil.which("deno") or "NOT_FOUND (recommended for current YouTube extraction)"
-    info["project_engine"] = "7.1.0"
+    from factory_core.gemini_service import DEFAULT_GEMINI_MODEL, gemini_api_key_status
+
+    info["gemini_api_key"] = gemini_api_key_status()
+    info["gemini_model_default"] = DEFAULT_GEMINI_MODEL
+    info["project_engine"] = "7.2.0"
 
     print("Environment check:")
     for key, value in info.items():
@@ -96,6 +126,7 @@ def cmd_doctor(_args):
 def cmd_render(args):
     from modules.video_renderer import render_video
 
+    _guard_project_script_approval(args.script)
     final = render_video(
         script_path=args.script,
         voice_path=args.voice,
@@ -212,7 +243,7 @@ def cmd_pull(args):
 
 
 def main():
-    parser = argparse.ArgumentParser(description="YouTube Auto Factory MVP V7.1")
+    parser = argparse.ArgumentParser(description="YouTube Auto Factory MVP V7.2")
     sub = parser.add_subparsers(dest="command", required=True)
 
     parser_doctor = sub.add_parser("doctor", help="Check the local environment")

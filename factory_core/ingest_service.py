@@ -187,6 +187,8 @@ class IngestService:
             f"Transcript source: {record.get('transcript_source')}\n"
             f"Transcript words: {outputs.get('word_count')}\n\n"
             "Next file to use:\n"
-            "prompts/rewrite_prompt.txt\n"
+            "prompts/rewrite_prompt.txt\n\n"
+            "Automatic Gemini next step:\n"
+            f".\\.venv\\Scripts\\python.exe .\\app.py rewrite --project {record.get('project_id')}\n"
         )
         atomic_write_text(project_dir / "INGEST_RESULT.txt", text)
